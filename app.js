@@ -41,29 +41,35 @@ guessBtn.addEventListener('click', function(){
       guessInput.value = '';
       setMessage(`Guess is not correct. ${guessesLeft} guesses left`, 'red');
     }
-
   }
 
 });
+
+//Play Again Event Listener
+game.addEventListener('mousedown', function(e){
+  if (e.target.className === 'play-again'){
+    window.location.reload();
+  }
+} )
 
 //Set Message Function
 function setMessage(msg, color){
   message.style.color = color;
   message.textContent = msg;
-  
-}
+};
 
 //Game Over Function
 function gameOver(won, msg){
   let color;
 
   guessInput.disabled = 'true';
-
   won === true ? color = 'green' : color = 'red'
   guessInput.style.borderColor = color;
   message.style.color = color;
 
-
   setMessage(msg);
 
+  //Play again?
+  guessBtn.value = 'Play Again';
+  guessBtn.className += 'play-again';
 };
